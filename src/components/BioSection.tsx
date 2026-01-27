@@ -1,4 +1,3 @@
-import { Leaf } from "lucide-react"
 
 export function BioSection() {
   return (

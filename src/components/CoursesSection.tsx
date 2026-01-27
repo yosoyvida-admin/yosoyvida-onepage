@@ -1,5 +1,5 @@
-import { Sparkles, Calendar, Users } from "lucide-react"
-// Ya no necesitamos importar WaveDivider aquí
+import { Sparkles } from "lucide-react"
+
 
 export function CoursesSection() {
   return (
