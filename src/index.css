@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #F9F4EF;
+    --foreground: #4A3B32;
+    --cream: #F9F4EF;
+    --dark-brown: #4A3B32;
+    --terracotta: #D08C8C;
+    --earthy-brown: #8B5E3C;
+    --muted: #E8DED5; 
+  }
+
+  body {
+    @apply bg-cream text-dark-brown font-sans;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply font-serif;
+  }
+}
+
+/* Clases de utilidad para simular las variables de ShadCN que usa v0 */
+@layer utilities {
+  .bg-muted { @apply bg-[#E8DED5]; }
+  .text-muted-foreground { @apply text-[#6B5A4E]; }
+  .border-border { @apply border-[#D4C5B9]; }
+}
+
+@layer utilities {
+  /* Opción 1: Fade Puro (El más elegante y seguro) */
+  .animate-fade-in {
+    animation: fadeIn 1s ease-in-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from { 
+      opacity: 0;
+      /* Eliminamos transform: translateY(20px) para evitar el corte arriba */
+    }
+    to { 
+      opacity: 1; 
+    }
+  }
+
+  /* Opción 2: Fade con Blur (Efecto "Enfoque" premium) */
+  /* Si prefieres este, cambia el nombre de la clase arriba a .animate-blur-in */
+  .animate-blur-in {
+    animation: blurIn 0.8s ease-out forwards;
+  }
+
+  @keyframes blurIn {
+    from {
+      opacity: 0;
+      filter: blur(10px); /* Empieza borroso */
+      transform: scale(1.02); /* Un pelín más grande para evitar bordes blancos */
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+      transform: scale(1);
+    }
+  }
+}
