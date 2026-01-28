@@ -17,24 +17,19 @@ export function BioSection() {
 
           <div className="space-y-8 order-1 lg:order-2">
             <h2 className="font-serif text-3xl md:text-5xl lg:text-6xl text-dark-brown leading-tight text-balance">
-              Underneath worry, desire...
+              El arte de sanar desde el ser.
             </h2>
             
             <div className="space-y-6 text-dark-brown/90 font-sans text-lg md:text-xl leading-relaxed">
                 <p>
-                  It trusts, it knows joy. There is a place within you that has never been wounded, 
-                  that is incapable of suffering. A place of deep stillness that remembers your true nature.
-                </p>
-                <p>
-                  This is the essence of contentment—not the absence of challenges, but the presence 
-                  of peace regardless of circumstances.
+                  Acompáñanos en este espacio  donde la naturaleza, la ciencia y la consciencia convergen. No solo tratamos síntomas; acompañamos el despertar de tu equilibrio natural.
                 </p>
             </div>
 
             <div className="pt-6 border-t border-earthy-brown/20 flex items-center gap-4">
               <span className="h-px w-12 bg-earthy-brown"></span>
               <p className="font-cursive text-3xl text-earthy-brown italic">
-                Santosha means contentment
+                Jesarela
               </p>
             </div>
           </div>

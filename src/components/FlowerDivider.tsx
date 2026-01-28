@@ -8,15 +8,18 @@ const BOTTOM_WAVE = "M0,32L48,53.3C96,75,192,117,288,149.3C384,181,480,203,576,1
 
 export function FlowerDivider() {
   return (
-    <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden">
+    // CAMBIO 1: h-[300px] en móvil (antes 400px) para que no ocupe tanta pantalla
+    <div className="relative w-full h-[300px] md:h-[500px] overflow-hidden">
       
-      {/* Imagen de Fondo Parallax */}
+      {/* Imagen de Fondo */}
       <div 
-        className="absolute inset-0 bg-fixed bg-center bg-cover"
+        // CAMBIO 2: 'bg-scroll' para móvil (quita el zoom excesivo) y 'md:bg-fixed' para escritorio (mantiene parallax)
+        className="absolute inset-0 bg-center bg-cover bg-scroll md:bg-fixed"
         style={{ backgroundImage: "url('/images/flowers-bg.webp')" }} 
       />
       
       {/* Ola Superior (Apunta hacia abajo) */}
+      {/* Opcional: Puedes agregar height="h-[40px] md:h-[100px]" si las olas también se ven muy grandes */}
       <WaveDivider path={TOP_WAVE} className="text-cream" position="top" />
 
       {/* Ola Inferior (Apunta hacia arriba) */}

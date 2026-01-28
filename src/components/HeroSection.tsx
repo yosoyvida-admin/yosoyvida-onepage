@@ -20,9 +20,9 @@ export function HeroSection() {
       {/* Texto Centrado */}
       <div className="absolute inset-0 flex items-center justify-center z-10 px-4">
         <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-cream text-center tracking-wide leading-tight drop-shadow-lg">
-          UNEARTH
+          BIENESTAR
           <br />
-          <span className="italic font-light">Contentment</span>
+          <span className="italic font-light">Natural & Terapia Integral</span>
         </h1>
       </div>
 
