@@ -2,32 +2,38 @@ import { Link } from "react-router-dom"
 import { MessageCircle, ArrowRight } from "lucide-react"
 import { WaveDivider } from "./WaveDivider"
 
-//SVG 6
-const WAVE_PATH = "M0,224L48,202.7C96,181,192,139,288,122.7C384,107,480,117,576,144C672,171,768,213,864,197.3C960,181,1056,107,1152,85.3C1248,64,1344,96,1392,112L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+// SVG6 (Ola Inferior)
+const BOTTOM_WAVE = "M0,224L48,202.7C96,181,192,139,288,122.7C384,107,480,117,576,144C672,171,768,213,864,197.3C960,181,1056,107,1152,85.3C1248,64,1344,96,1392,112L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+
+// SVG1 (Ola Superior)
+const TOP_WAVE = "M0,96L48,96C96,96,192,96,288,112C384,128,480,160,576,192C672,224,768,256,864,240C960,224,1056,160,1152,138.7C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
 
 const products = [
-  { id: 1, name: "Esencia Floral Calma", price: "$12.990", image: "/images/products/product-1.jpg" },
-  { id: 2, name: "Té Herbal Serenidad", price: "$8.990", image: "/images/products/product-2.jpg" },
-  { id: 3, name: "Jabón Natural Lavanda", price: "$6.990", image: "/images/products/product-3.jpg" },
-  { id: 4, name: "Vela Aromática Paz", price: "$14.990", image: "/images/products/product-4.jpg" },
-  { id: 5, name: "Aceite Corporal Bienestar", price: "$18.990", image: "/images/products/product-5.jpg" },
-  { id: 6, name: "Incienso Natural", price: "$5.990", image: "/images/products/product-6.jpg" },
-  { id: 7, name: "Cristales Sanadores", price: "$22.990", image: "/images/products/product-7.jpg" },
-  { id: 8, name: "Bálsamo Herbal", price: "$11.990", image: "/images/products/product-8.jpg" },
+  { id: 1, name: "Agua de Mar", price: "$7.000", image: "/images/products/aguademar.png" },
+  { id: 2, name: "DMSO Líquido 120ml", price: "$30.000", image: "/images/products/dmso.png" },
+  { id: 3, name: "Trementina Vegetal 120ml", price: "$24.000", image: "/images/products/trementina.png" },
+  { id: 4, name: "CDS Profesional Vidrio 500ml", price: "$20.000", image: "/images/products/cdsprofesional.png" },
 ]
 
-const WHATSAPP_NUMBER = "56912345678" // ¡Cambia esto por tu número real!
+const WHATSAPP_NUMBER = "56912345678" 
 
 export function ProductsSection() {
   return (
-    <section className="bg-cream py-16 md:py-24 px-6 md:px-12 relative">
+    // CAMBIO 1: Fondo 'bg-terracotta' para darle vida y contraste
+    <section className="bg-terracotta py-16 md:py-24 px-6 md:px-12 relative text-cream">
+      
+      {/* CAMBIO 2: Ola Superior BEIGE 
+         (Se conecta visualmente con el final de la sección 'Sobre Mí')
+      <WaveDivider path={TOP_WAVE} className="text-[#E8DED5]" position="top" />
+      */}
+
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-dark-brown mb-4">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-cream mb-4">
             Botiquín Natural
           </h2>
-          <p className="font-sans text-lg text-dark-brown/70 max-w-2xl mx-auto">
+          <p className="font-sans text-lg text-cream/80 max-w-2xl mx-auto">
             Productos naturales seleccionados para acompañar tu proceso de sanación y bienestar
           </p>
         </div>
@@ -37,25 +43,28 @@ export function ProductsSection() {
           {products.map((product) => (
             <div
               key={product.id}
-              className="group bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-300"
+              className="group bg-white rounded-lg overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col"
             >
-              <div className="relative aspect-square overflow-hidden">
+              <div className="relative aspect-square overflow-hidden bg-white p-6">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
-              <div className="p-4">
-                <h3 className="font-serif text-sm md:text-base text-dark-brown mb-1 line-clamp-2">
+              
+              <div className="p-4 flex flex-col flex-grow">
+                {/* Textos en dark-brown para leerse bien sobre la tarjeta blanca */}
+                <h3 className="font-serif text-sm md:text-base text-dark-brown mb-1 line-clamp-2 min-h-[2.5em]">
                   {product.name}
                 </h3>
-                <p className="font-sans text-earthy-brown font-medium mb-3">{product.price}</p>
+                <p className="font-sans text-earthy-brown font-medium mb-4">{product.price}</p>
+                
                 <a
                   href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hola! Me interesa el producto: ${product.name}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-[#25D366] text-white text-xs md:text-sm px-3 py-2 rounded-full hover:bg-[#128C7E] transition-colors duration-300 w-full justify-center"
+                  className="mt-auto inline-flex items-center gap-2 bg-[#25D366] text-white text-xs md:text-sm px-3 py-2.5 rounded-full hover:bg-[#128C7E] transition-colors duration-300 w-full justify-center shadow-sm"
                 >
                   <MessageCircle className="w-4 h-4" />
                   <span>Consultar</span>
@@ -69,14 +78,18 @@ export function ProductsSection() {
         <div className="text-center">
           <Link
             to="/catalogo"
-            className="inline-flex items-center gap-3 bg-earthy-brown text-cream font-sans uppercase tracking-widest text-sm md:text-base px-8 md:px-10 py-4 hover:bg-dark-brown transition-colors duration-300"
+            // Botón con alto contraste: Dark Brown sobre fondo Terracotta
+            className="inline-flex items-center gap-3 bg-dark-brown text-cream border border-cream/20 font-sans uppercase tracking-widest text-sm md:text-base px-8 md:px-10 py-4 hover:bg-cream hover:text-dark-brown transition-all duration-300 rounded-full shadow-lg"
           >
             Ver Catálogo Completo
             <ArrowRight className="w-5 h-5" />
           </Link>
         </div>
       </div>
-      <WaveDivider path={WAVE_PATH} className="text-[#E8DED5]" />
+
+      {/* CAMBIO 3: Ola Inferior BEIGE
+         (Se conecta visualmente con el inicio de 'CoursesSection') */}
+      <WaveDivider path={BOTTOM_WAVE} className="text-[#E8DED5]" position="bottom" />
     </section>
   )
 }

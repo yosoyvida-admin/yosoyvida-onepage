@@ -10,9 +10,12 @@ export function HeroSection() {
       {/* Imagen de Fondo */}
       <div className="absolute inset-0">
         <img
-          src="/images/hero-lifestyle.jpg"
+          src="/images/Hero-bg.png"
+          //src="/images/q.png"
+          //src="/images/c.png"
           alt="Serene lifestyle scene"
           className="w-full h-full object-cover"
+          style={{ objectPosition: "50% 75%" }} 
         />
         <div className="absolute inset-0 bg-dark-brown/30" />
       </div>

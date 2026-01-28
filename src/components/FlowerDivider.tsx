@@ -8,18 +8,28 @@ const BOTTOM_WAVE = "M0,32L48,53.3C96,75,192,117,288,149.3C384,181,480,203,576,1
 
 export function FlowerDivider() {
   return (
-    // CAMBIO 1: h-[300px] en móvil (antes 400px) para que no ocupe tanta pantalla
-    <div className="relative w-full h-[300px] md:h-[500px] overflow-hidden">
+    <div 
+      className="relative w-full h-[300px] md:h-[500px]"
+      // ESTE ES EL TRUCO: 
+      // clipPath obliga al contenido 'fixed' a verse SOLO dentro de este div.
+      // Así evitamos que la imagen tape toda la web, pero mantenemos el efecto quieto.
+      style={{ clipPath: "inset(0)" }} 
+    >
       
-      {/* Imagen de Fondo */}
-      <div 
-        // CAMBIO 2: 'bg-scroll' para móvil (quita el zoom excesivo) y 'md:bg-fixed' para escritorio (mantiene parallax)
-        className="absolute inset-0 bg-center bg-cover bg-scroll md:bg-fixed"
-        style={{ backgroundImage: "url('/images/flowers-bg.webp')" }} 
-      />
+      {/* Imagen de Fondo (Ahora es una etiqueta IMG, no un div background) */}
+      <div className="fixed inset-0 w-full h-full">
+        <img 
+          src="/images/flowers-bg.webp"
+          alt="Flowers Background"
+          // fixed: se queda quieta en la pantalla
+          // object-cover: se adapta sin zoom exagerado
+          className="w-full h-full object-cover"
+        />
+        {/* Capa oscura opcional para que resalten las olas (puedes quitarla si quieres) */}
+        <div className="absolute inset-0 bg-dark-brown/10" />
+      </div>
       
       {/* Ola Superior (Apunta hacia abajo) */}
-      {/* Opcional: Puedes agregar height="h-[40px] md:h-[100px]" si las olas también se ven muy grandes */}
       <WaveDivider path={TOP_WAVE} className="text-cream" position="top" />
 
       {/* Ola Inferior (Apunta hacia arriba) */}

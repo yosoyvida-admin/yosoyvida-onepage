@@ -54,15 +54,12 @@ export function Navbar() {
       }
   }, [location.pathname])
 
-  // --- AQUÍ ESTÁ LA MAGIA ---
   const handleNavClick = (href: string) => {
     setIsMobileMenuOpen(false);
     
-    // Caso 1: Clic en Home o Logo ("/")
     if (href === "/") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-    // Caso 2: Clic en Ancla (/#seccion)
     else if (href.startsWith("/#")) {
       const id = href.replace("/#", "");
       const element = document.getElementById(id);
@@ -81,18 +78,20 @@ export function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        {/* AJUSTE 1: Aumentamos altura del contenedor (h-20 móvil, h-28 escritorio) */}
+        <div className="flex items-center justify-between h-20 md:h-28">
           
           {/* Logo con acción de ir arriba */}
           <Link 
             to="/" 
-            onClick={() => handleNavClick("/")} // <--- AGREGADO AQUÍ
+            onClick={() => handleNavClick("/")} 
             className="font-cursive text-2xl md:text-3xl text-dark-brown relative z-50 hover:opacity-80 transition-opacity cursor-pointer"
           >
+            {/* AJUSTE 2: Logo más grande (h-16 móvil, h-24 escritorio) */}
             <img
-                src="/images/logo.png"
+                src="/images/Yosoyvidanaturallogo(1).png"
                 alt="Yo Soy Vida Logo"
-                className="h-10 md:h-14 w-auto object-contain"
+                className="h-16 md:h-24 w-auto object-contain transition-transform duration-300 hover:scale-105"
             />
           </Link>
 

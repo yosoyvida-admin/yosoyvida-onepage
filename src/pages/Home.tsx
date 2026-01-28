@@ -6,6 +6,8 @@ import { TherapiesSection } from "../components/TherapiesSection"
 import { ProductsSection } from "../components/ProductsSection"
 import { CoursesSection } from "../components/CoursesSection"
 import { FooterSection } from "../components/FooterSection"
+import { AboutSection } from "../components/AboutSection"
+import { FlowerDivider2 } from "../components/FloweDivider2"
 
 export default function Home() {
   return (
@@ -15,6 +17,8 @@ export default function Home() {
       <FlowerDivider />
       <PillarsSection />
       <TherapiesSection />
+      <AboutSection />
+      <FlowerDivider2 />
       <ProductsSection />
       <CoursesSection />
       <FooterSection />

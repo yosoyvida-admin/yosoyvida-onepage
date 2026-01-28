@@ -8,7 +8,7 @@ export function BioSection() {
           <div className="relative flex justify-center lg:justify-start order-2 lg:order-1">
             <div className="relative w-full max-w-lg aspect-[3/4]">
               <img
-                src="/images/bio-transparent.webp" 
+                src="/images/reiki-transparent.webp" 
                 alt="Retrato de la coach"
                 className="w-full h-full object-contain drop-shadow-xl hover:scale-[1.02] transition-transform duration-500" 
               />
