@@ -39,7 +39,7 @@ export function FooterSection({ topWaveColor = "text-[#E8DED5]" }: FooterSection
         <div className="relative z-10 px-6 max-w-4xl text-center">
           <blockquote className="space-y-6">
             <p className="font-serif text-2xl md:text-4xl lg:text-5xl text-cream leading-tight italic text-balance drop-shadow-lg">
-              "La naturaleza no se apresura, y sin embargo, todo se logra."
+              "When I let go of what I am, I become what I might be."
             </p>
             <cite className="block font-cursive text-xl md:text-3xl text-cream/90 not-italic transform -rotate-1">
               — Lao Tzu

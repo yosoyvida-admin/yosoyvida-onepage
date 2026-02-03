@@ -232,5 +232,45 @@ export const generalCatalog: Product[] = [
     shortDescription: "Relajante y Detox Muscular.", 
     technicalInfo: "BOLSA DE 1 KILO. SULFATO DE MAGNESIO.",
     description: "Adiós Dolor: Baños de tina para soltar músculos.\nLimpieza Hepática: Dilata conductos biliares.\nAnti-Estrés: Baja el cortisol.\n\nEn resumen: Spa en casa y herramienta detox. 🛁" 
-  }
+  },
+  {
+    id: 101, // Asegúrate que el ID no se repita
+    name: "Salud Prohibida: Incurable era ayer",
+    price: "$26.000", // ¡Ajusta este precio!
+    image: "/images/products/salud-prohibida.jpg", // Sube la portada con este nombre
+    type: "book",
+    author: "Andreas Kalcker",
+    bestseller: true, // Lo marqué como favorito/bestseller
+    shortDescription: "La guía definitiva con protocolos de la A a la Z y evidencia científica.",
+    description: `Después de cuatro años de trabajo por fin se ha podido terminar el libro nuevo de Andreas titulado «Salud prohibida, incurable era ayer», donde en más de 400 páginas lista enfermedades de la A hasta la Z con protocolos incluidos, testimonios reales de cada enfermedad y nuevos datos científicos.
+    
+    Es una herramienta indispensable para quienes buscan tomar las riendas de su propia salud con conocimiento y responsabilidad.`,
+    formats: []
+},
+{
+    id: 102,
+    name: "Mini Guía: Salud Prohibida",
+    price: "$8.000", // ¡Ajusta este precio!
+    image: "/images/products/lo-esencial.jpg", // Sube la portada con este nombre
+    type: "book",
+    author: "Andreas Kalcker",
+    shortDescription: "Lo esencial y los protocolos de bolsillo para uso práctico.",
+    description: `Esta mini guía es un extracto del libro «Salud Prohibida» y va dirigida a las personas que estén interesadas solo en «lo esencial y los protocolos».
+    
+    Espero que le sea útil y que logre mejorar el estado de salud suyo o de las personas que más quiere. Ideal para tener siempre a mano como referencia rápida.`,
+    formats: []
+},
+{
+    id: 103,
+    name: "Bye Bye Covid", // Este es el título que suele llevar esa descripción
+    price: "$18.000", // ¡Ajusta este precio!
+    image: "/images/products/to-you.png", // Sube la portada con este nombre
+    type: "book",
+    author: "Varios Especialistas",
+    shortDescription: "Testimonios y ciencia que cuestionan el discurso oficial.",
+    description: `Un libro que rescata, para la historia, los testimonios de especialistas de primer nivel y divulgadores que cuestionaron el discurso mediático sobre la actualidad ilegal mundial.
+    
+    Desde un enfoque científico, empírico y humanista que cambiará para siempre nuestra perspectiva sobre aquellos que nos gobiernan. Una obra valiente y necesaria.`,
+    formats: []
+}
 ];

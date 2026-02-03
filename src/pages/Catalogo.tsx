@@ -4,6 +4,7 @@ import { FooterSection } from "../components/FooterSection"
 import { WaveDivider } from "../components/WaveDivider"
 import { ProductModal } from "../components/ProductModal" 
 import { topProducts, generalCatalog, type Product } from "../data/product"
+import { FadeIn } from "../components/ui/FadeIn" // <--- Importamos FadeIn
 
 // Olas Decorativas
 const HERO_WAVE = "M0,224L48,202.7C96,181,192,139,288,122.7C384,107,480,117,576,144C672,171,768,213,864,197.3C960,181,1056,107,1152,85.3C1248,64,1344,96,1392,112L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
@@ -21,7 +22,7 @@ function ProductCard({ product, onOpen }: CardProps) {
   return (
     <div 
       onClick={() => onOpen(product)}
-      className="group bg-white rounded-xl overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col h-full border border-black/5 cursor-pointer relative"
+      className="group bg-white rounded-xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2 flex flex-col h-full border border-black/5 cursor-pointer relative"
     >
       {/* Imagen */}
       <div className={`relative overflow-hidden bg-gray-50 ${isBook ? "aspect-[3/4]" : "aspect-square"}`}>
@@ -33,13 +34,13 @@ function ProductCard({ product, onOpen }: CardProps) {
         
         {/* Badges */}
         {product.bestseller && (
-          <div className="absolute top-3 left-3 bg-terracotta text-cream text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1 shadow-md z-10">
+          <div className="absolute top-3 left-3 bg-terracotta text-cream text-xs font-bold px-3 py-1.5 rounded-full flex items-center gap-1 shadow-md z-10 animate-fade-in">
             <Star className="w-3 h-3 fill-current" />
             <span className="hidden sm:inline">FAVORITO</span>
           </div>
         )}
         {isBook && (
-           <div className="absolute top-3 right-3 bg-white/90 text-dark-brown text-xs font-bold px-2 py-1 rounded flex items-center gap-1 shadow-sm z-10">
+           <div className="absolute top-3 right-3 bg-white/90 text-dark-brown text-xs font-bold px-2 py-1 rounded flex items-center gap-1 shadow-sm z-10 animate-fade-in">
              <BookOpen className="w-3 h-3" />
              <span>LIBRO</span>
            </div>
@@ -47,7 +48,7 @@ function ProductCard({ product, onOpen }: CardProps) {
         
         {/* Overlay "Ver Detalle" */}
         <div className="absolute inset-0 bg-dark-brown/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[1px]">
-           <div className="bg-white text-dark-brown px-4 py-2 rounded-full font-bold text-sm flex items-center gap-2 shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform">
+           <div className="bg-white text-dark-brown px-4 py-2 rounded-full font-bold text-sm flex items-center gap-2 shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
              <Eye className="w-4 h-4" /> Ver Detalle
            </div>
         </div>
@@ -111,7 +112,7 @@ export default function CatalogoPage() {
   };
 
   return (
-    <main className="min-h-screen bg-cream animate-fade-in">
+    <main className="min-h-screen bg-cream">
       
       {/* HERO SECTION */}
       <section className="relative w-full h-[50vh] min-h-[400px] flex items-center justify-center">
@@ -123,36 +124,48 @@ export default function CatalogoPage() {
              />
              <div className="absolute inset-0 bg-dark-brown/40 backdrop-blur-[2px]" />
         </div>
+        
         <div className="relative z-10 text-center px-6 max-w-4xl mx-auto">
-            <span className="block font-sans uppercase tracking-[0.2em] text-cream/80 text-sm mb-4 animate-fade-in">
-              Bienestar & Armonía
-            </span>
-            <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-cream mb-6 drop-shadow-lg">
-              Catálogo Integral
-            </h1>
-            <p className="font-sans text-lg md:text-xl text-cream/90 max-w-2xl mx-auto leading-relaxed">
-               Una cuidadosa selección de elementos naturales y sabiduría escrita para acompañar tu proceso.
-            </p>
+            <FadeIn direction="up" delay={0.2}>
+                <span className="block font-sans uppercase tracking-[0.2em] text-cream/80 text-sm mb-4">
+                Bienestar & Armonía
+                </span>
+            </FadeIn>
+            <FadeIn direction="up" delay={0.3}>
+                <h1 className="font-serif text-4xl md:text-6xl lg:text-7xl text-cream mb-6 drop-shadow-lg">
+                Catálogo Integral
+                </h1>
+            </FadeIn>
+            <FadeIn direction="up" delay={0.4}>
+                <p className="font-sans text-lg md:text-xl text-cream/90 max-w-2xl mx-auto leading-relaxed">
+                Una cuidadosa selección de elementos naturales y sabiduría escrita para acompañar tu proceso.
+                </p>
+            </FadeIn>
         </div>
         <WaveDivider path={HERO_WAVE} className="text-[#E8DED5]" />
       </section>
 
       {/* TOP 5 FAVORITOS */}
-      <section className="bg-[#E8DED5] py-16 md:py-24 px-6 md:px-12 relative">
+      <section className="bg-[#E8DED5] py-16 md:py-24 px-6 md:px-12 relative -mt-[2px] z-10">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 mb-12">
-            <div className="p-3 bg-terracotta/20 rounded-full">
-               <Star className="w-8 h-8 text-terracotta fill-terracotta" />
+          
+          <FadeIn>
+            <div className="flex flex-col md:flex-row items-center justify-center md:justify-start gap-4 mb-12">
+                <div className="p-3 bg-terracotta/20 rounded-full">
+                    <Star className="w-8 h-8 text-terracotta fill-terracotta" />
+                </div>
+                <div className="text-center md:text-left">
+                    <h2 className="font-serif text-3xl md:text-4xl text-dark-brown">Los Favoritos</h2>
+                    <p className="text-dark-brown/70 text-sm">Lo más buscado para tu botiquín natural</p>
+                </div>
             </div>
-            <div className="text-center md:text-left">
-                <h2 className="font-serif text-3xl md:text-4xl text-dark-brown">Los Favoritos</h2>
-                <p className="text-dark-brown/70 text-sm">Lo más buscado para tu botiquín natural</p>
-            </div>
-          </div>
+          </FadeIn>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {topProducts.map((product) => (
-              <ProductCard key={product.id} product={product} onOpen={openModal} />
+            {topProducts.map((product, index) => (
+              <FadeIn key={product.id} delay={index * 0.1} className="h-full">
+                  <ProductCard product={product} onOpen={openModal} />
+              </FadeIn>
             ))}
           </div>
         </div>
@@ -160,46 +173,51 @@ export default function CatalogoPage() {
       </section>
 
       {/* CATÁLOGO GENERAL (Con Filtros y Carga Progresiva) */}
-      <section className="bg-cream py-16 md:py-24 px-6 md:px-12">
+      <section className="bg-cream py-16 md:py-24 px-6 md:px-12 -mt-[2px] z-10 relative">
         <div className="max-w-7xl mx-auto">
           
-          <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
-             <h2 className="font-serif text-2xl md:text-3xl text-dark-brown pl-4 border-l-4 border-earthy-brown">
-                Explora la Colección
-             </h2>
+          <FadeIn>
+              <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
+                <h2 className="font-serif text-2xl md:text-3xl text-dark-brown pl-4 border-l-4 border-earthy-brown">
+                    Explora la Colección
+                </h2>
 
-             {/* Botones de Filtro */}
-             <div className="flex flex-wrap gap-2 justify-center">
-                {[
-                    { key: 'all', label: 'Ver Todo' },
-                    { key: 'product', label: 'Bienestar' },
-                    { key: 'book', label: 'Libros' }
-                ].map((btn) => (
-                    <button
-                        key={btn.key}
-                        onClick={() => handleFilterChange(btn.key as any)}
-                        className={`px-5 py-2 rounded-full text-sm font-sans uppercase tracking-wider transition-all duration-300 ${
-                            filter === btn.key 
-                            ? "bg-terracotta text-cream shadow-md transform scale-105 font-bold" 
-                            : "bg-white text-dark-brown border border-dark-brown/10 hover:border-terracotta"
-                        }`}
-                    >
-                        {btn.label}
-                    </button>
-                ))}
-             </div>
-          </div>
+                {/* Botones de Filtro */}
+                <div className="flex flex-wrap gap-2 justify-center">
+                    {[
+                        { key: 'all', label: 'Ver Todo' },
+                        { key: 'product', label: 'Bienestar' },
+                        { key: 'book', label: 'Libros' }
+                    ].map((btn) => (
+                        <button
+                            key={btn.key}
+                            onClick={() => handleFilterChange(btn.key as any)}
+                            className={`px-5 py-2 rounded-full text-sm font-sans uppercase tracking-wider transition-all duration-300 ${
+                                filter === btn.key 
+                                ? "bg-terracotta text-cream shadow-md transform scale-105 font-bold" 
+                                : "bg-white text-dark-brown border border-dark-brown/10 hover:border-terracotta"
+                            }`}
+                        >
+                            {btn.label}
+                        </button>
+                    ))}
+                </div>
+              </div>
+          </FadeIn>
 
           {/* Grid Dinámico */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8 mb-12 animate-fade-in">
-            {visibleItems.map((product) => (
-              <ProductCard key={product.id} product={product} onOpen={openModal} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8 mb-12">
+            {visibleItems.map((product, index) => (
+              // Reiniciamos el delay si es un filtro nuevo para que se vea lindo
+              <FadeIn key={product.id} delay={index % 4 * 0.1} className="h-full">
+                 <ProductCard product={product} onOpen={openModal} />
+              </FadeIn>
             ))}
           </div>
 
           {/* Botón "Cargar Más" */}
           {hasMore && (
-              <div className="flex justify-center pt-8">
+            <FadeIn delay={0.2} className="flex justify-center pt-8">
                   <button 
                     onClick={() => setVisibleCount(prev => prev + 8)}
                     className="group flex flex-col items-center gap-2 text-dark-brown hover:text-terracotta transition-colors duration-300"
@@ -209,13 +227,15 @@ export default function CatalogoPage() {
                         <Sparkles className="w-5 h-5" />
                       </div>
                   </button>
-              </div>
+            </FadeIn>
           )}
 
            {!hasMore && visibleItems.length > 0 && (
-               <p className="text-center text-dark-brown/40 text-sm mt-8 font-cursive">
-                   Fin de la colección ✨
-               </p>
+               <FadeIn delay={0.2}>
+                   <p className="text-center text-dark-brown/40 text-sm mt-8 font-cursive">
+                       Fin de la colección ✨
+                   </p>
+               </FadeIn>
            )}
         </div>
       </section>
