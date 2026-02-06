@@ -98,7 +98,7 @@ export function CoursesSection() {
                       ¡Quiero Iniciar el Viaje!
                       </a>
                       <span className="text-sm text-dark-brown/60 italic border-l-2 border-terracotta/30 pl-3">
-                          Cupos limitados disponibles
+                          Cupos disponibles
                       </span>
                   </div>
                </FadeIn>
