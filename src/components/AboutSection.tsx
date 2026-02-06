@@ -22,8 +22,8 @@ export function AboutSection() {
                   <Sparkles className="w-5 h-5 text-terracotta" />
                   <span className="text-sm font-bold text-dark-brown uppercase tracking-wider">Mi Propósito</span>
                 </div>
-                <p className="text-base text-earthy-brown font-serif leading-snug italic">
-                  "Ayudarte a recordar tu propia luz."
+                <p className="text-base text-earthy-brown font-serif leading-snug">
+                  Ayudarte a recordar tu propia luz.
                 </p>
               </div>
             </div>
