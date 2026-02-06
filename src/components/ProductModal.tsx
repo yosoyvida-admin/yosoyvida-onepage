@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { createPortal } from "react-dom"; // <--- 1. IMPORTANTE: Importamos el Portal
+import { createPortal } from "react-dom"; 
 import { X, MessageCircle, Package, CheckCircle } from "lucide-react";
 import type { Product } from "../data/product";
 
@@ -10,9 +10,9 @@ interface ProductModalProps {
 }
 
 const WHATSAPP_NUMBER = "56912345678";
+const BRAND_LOGO = "/images/cropped-Logo_Transparente-150x150.png";
 
 export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
-  // Estado para asegurar que el componente esté montado antes de usar el portal
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -20,7 +20,6 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
     return () => setMounted(false);
   }, []);
 
-  // Bloqueo de scroll del body
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -30,18 +29,14 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
     return () => { document.body.style.overflow = 'unset'; };
   }, [isOpen]);
 
-  // Si no está abierto, no hay producto o no está montado, no renderizamos nada
   if (!isOpen || !product || !mounted) return null;
 
   const paragraphs = product.description.split('\n');
 
-  // --- 2. LA MAGIA: Usamos createPortal ---
-  // El primer argumento es el JSX de siempre.
-  // El segundo argumento es "document.body", el lugar donde queremos teletransportarlo.
   return createPortal(
     <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 animate-fade-in">
       
-      {/* Backdrop (Fondo oscuro) */}
+      {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-dark-brown/60 backdrop-blur-sm transition-opacity" 
         onClick={onClose}
@@ -59,18 +54,29 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
         </button>
 
         {/* COLUMNA IMAGEN */}
-        <div className="w-full md:w-2/5 h-48 md:h-auto bg-[#F9F4EF] flex items-center justify-center p-6 shrink-0 relative">
+        <div className="w-full md:w-2/5 h-64 md:h-auto bg-[#F9F4EF] flex items-center justify-center p-6 shrink-0 relative group">
+           
+           {/* LOGO MARCA */}
+           {product.type !== 'book' && (
+             <div className="absolute top-4 left-4 z-20 bg-white/80 backdrop-blur-sm p-1.5 rounded-lg shadow-sm border border-white/50">
+                <img 
+                  src={BRAND_LOGO} 
+                  alt="Pro Natural" 
+                  className="w-12 h-12 md:w-14 md:h-14 object-contain opacity-90 hover:opacity-100 transition-opacity"
+                />
+             </div>
+           )}
+
            <img 
              src={product.image} 
              alt={product.name} 
-             className="w-full h-full object-contain drop-shadow-xl"
+             className="w-full h-full object-contain drop-shadow-xl transition-transform duration-500 group-hover:scale-105"
            />
         </div>
 
         {/* COLUMNA INFO (Con Scroll) */}
         <div className="w-full md:w-3/5 p-5 md:p-8 flex flex-col overflow-y-auto">
            
-           {/* Header */}
            <div className="border-b border-gray-100 pb-3 mb-4">
              <span className="text-terracotta text-[10px] md:text-xs font-bold tracking-widest uppercase mb-1 block">
                {product.type === 'book' ? 'Libro Recomendado' : 'Producto Natural'}
@@ -81,7 +87,6 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
              <span className="text-lg md:text-xl font-bold text-earthy-brown">{product.price}</span>
            </div>
            
-           {/* Info Técnica */}
            {product.technicalInfo && (
              <div className="bg-earthy-brown/5 p-3 rounded-lg mb-5 flex gap-3 items-start border border-earthy-brown/10">
                 <Package className="w-4 h-4 text-earthy-brown flex-shrink-0 mt-0.5" />
@@ -91,7 +96,6 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
              </div>
            )}
 
-           {/* Descripción */}
            <div className="space-y-3 mb-6 text-dark-brown/80 font-sans text-sm leading-relaxed">
              {paragraphs.map((line, index) => (
                line.trim() === "" ? <br key={index}/> : 
@@ -104,7 +108,6 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
              ))}
            </div>
 
-           {/* Formatos */}
            {product.formats && product.formats.length > 0 && (
              <div className="mb-6">
                <h4 className="font-serif text-dark-brown text-sm mb-2 border-l-4 border-terracotta pl-2">
@@ -121,11 +124,11 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
              </div>
            )}
 
-           {/* Espaciador para no tapar contenido con el botón */}
-           <div className="h-16 md:h-0"></div>
+           <div className="h-20 md:h-0"></div>
 
-           {/* Botón Flotante */}
-           <div className="md:relative fixed bottom-0 left-0 right-0 md:bottom-auto md:left-auto md:right-auto p-4 md:p-0 bg-white md:bg-transparent border-t md:border-t-0 border-gray-100 md:mt-auto shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] md:shadow-none z-10">
+           {/* --- BOTÓN FLOTANTE (Fix para iPhone) --- */}
+           {/* Agregado pb-8 para levantar el botón sobre la barra del iPhone */}
+           <div className="md:relative fixed bottom-0 left-0 right-0 md:bottom-auto md:left-auto md:right-auto p-4 pb-8 md:p-0 bg-white md:bg-transparent border-t md:border-t-0 border-gray-100 md:mt-auto shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] md:shadow-none z-10">
              <a
                 href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hola! Me interesa: ${product.name}`}
                 target="_blank"
@@ -140,6 +143,6 @@ export function ProductModal({ product, isOpen, onClose }: ProductModalProps) {
         </div>
       </div>
     </div>,
-    document.body // <--- Aquí termina el Portal: Enviamos todo directo al <body>
+    document.body
   );
 }

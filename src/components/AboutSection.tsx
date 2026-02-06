@@ -71,7 +71,7 @@ export function AboutSection() {
 
               <FadeIn delay={0.7}>
                   <p className="pt-2 border-l-4 border-terracotta/30 pl-4 italic text-dark-brown/90">
-                    Y así nace <strong className="text-terracotta font-serif not-italic text-xl">Yo Soy Vida</strong>, desde mi experiencia personal de pasar de estar condicionada por una enfermedad crónica sin cura, a ser una persona saludable y energética.
+                    Y así nace <strong className="text-terracotta font-serif not-italic text-xl">Yo Soy Vida</strong>, desde mi experiencia personal de pasar de estar condicionada por una enfermedad crónica sin cura, a ser una persona saludable y energética. Y todo eso gracias a Dios y su perfecta creación.
                   </p>
               </FadeIn>
             </div>

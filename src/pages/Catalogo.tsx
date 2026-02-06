@@ -1,3 +1,4 @@
+// ... imports (los mismos de antes)
 import { useState, useMemo } from "react"
 import { Star, Eye, Sparkles, BookOpen } from "lucide-react"
 import { FooterSection } from "../components/FooterSection"
@@ -6,12 +7,13 @@ import { ProductModal } from "../components/ProductModal"
 import { topProducts, generalCatalog, type Product } from "../data/product"
 import { FadeIn } from "../components/ui/FadeIn"
 
-// 👇 RUTA DEL LOGO (Confirma que este sea el nombre exacto de tu archivo en public/images/)
 const BRAND_LOGO = "/images/cropped-Logo.png";
 
+// ... constantes de WAVES (las mismas de antes) ...
 const HERO_WAVE = "M0,224L48,202.7C96,181,192,139,288,122.7C384,107,480,117,576,144C672,171,768,213,864,197.3C960,181,1056,107,1152,85.3C1248,64,1344,96,1392,112L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
 const MID_WAVE = "M0,224L48,213.3C96,203,192,181,288,186.7C384,192,480,224,576,208C672,192,768,128,864,122.7C960,117,1056,171,1152,170.7C1248,171,1344,117,1392,90.7L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
 
+// ... Componente ProductCard (Mismo de antes, solo verifica que tenga el logo sin caja) ...
 interface CardProps {
   product: Product;
   onOpen: (p: Product) => void;
@@ -25,16 +27,13 @@ function ProductCard({ product, onOpen }: CardProps) {
       onClick={() => onOpen(product)}
       className="group bg-white rounded-xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2 flex flex-col h-full border border-black/5 cursor-pointer relative"
     >
-      {/* Imagen */}
       <div className={`relative overflow-hidden bg-gray-50 ${isBook ? "aspect-[3/4]" : "aspect-square"}`}>
         
-        {/* --- LOGO DE MARCA (Sin caja, más grande) --- */}
         {!isBook && (
              <div className="absolute top-2 left-2 z-20 pointer-events-none">
                 <img 
                   src={BRAND_LOGO} 
                   alt="Pro Natural" 
-                  // w-20 h-20 es más grande. drop-shadow-md le da el toque flotante.
                   className="w-20 h-20 object-contain drop-shadow-md opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                 />
              </div>
@@ -46,7 +45,6 @@ function ProductCard({ product, onOpen }: CardProps) {
           className="w-full h-full object-contain p-5 group-hover:scale-105 transition-transform duration-700"
         />
         
-        {/* Badges */}
         {product.bestseller && (
           <div className="absolute top-3 right-3 bg-terracotta text-cream text-[10px] font-bold px-2 py-1 rounded-full flex items-center gap-1 shadow-md z-10 animate-fade-in">
             <Star className="w-3 h-3 fill-current" />
@@ -60,7 +58,6 @@ function ProductCard({ product, onOpen }: CardProps) {
            </div>
         )}
         
-        {/* Overlay "Ver Detalle" */}
         <div className="absolute inset-0 bg-dark-brown/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[1px]">
            <div className="bg-white text-dark-brown px-4 py-2 rounded-full font-bold text-sm flex items-center gap-2 shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
              <Eye className="w-4 h-4" /> Ver Detalle
@@ -68,7 +65,6 @@ function ProductCard({ product, onOpen }: CardProps) {
         </div>
       </div>
       
-      {/* Info Resumida */}
       <div className="p-5 flex flex-col flex-grow">
         <h3 className="font-serif text-lg text-dark-brown mb-1 line-clamp-1 group-hover:text-terracotta transition-colors">
           {product.name}
@@ -120,7 +116,10 @@ export default function CatalogoPage() {
   };
 
   return (
-    <main className="min-h-screen bg-cream">
+    // FIX IPHONE: min-h-dvh (altura dinámica) y antialiased (suavizado de fuente)
+    <main className="min-h-dvh bg-cream antialiased">
+      
+      {/* ... (El resto del código del Hero, Grid y Modal se mantiene exactamente igual) ... */}
       
       {/* HERO SECTION */}
       <section className="relative w-full h-[50vh] min-h-[400px] flex items-center justify-center">

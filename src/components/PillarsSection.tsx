@@ -49,6 +49,7 @@ export function PillarsSection() {
   const leftPillars = pillars.slice(0, 2);
   const rightPillars = pillars.slice(2, 4);
 
+  // Asegúrate de tener la imagen en public/images/
   const bovisBgImage = "/images/bovis-background.webp"; 
 
   return (
@@ -65,9 +66,10 @@ export function PillarsSection() {
 
             <FadeIn delay={0.2}>
                 <div className="mb-8">
-                    <p className="font-serif text-xl md:text-2xl text-dark-brown italic leading-relaxed text-balance font-medium">
-                        "¿Alguna vez has entrado a un lugar y te has sentido cansado de golpe? 
-                        ¿O has conocido a personas que parecen 'recargarte' las pilas?"
+                    {/* CAMBIO AQUÍ: Eliminada la clase 'italic' y quitadas las comillas del texto */}
+                    <p className="font-serif text-xl md:text-2xl text-dark-brown leading-relaxed text-balance font-medium">
+                        ¿Alguna vez has entrado a un lugar y te has sentido cansado de golpe? 
+                        ¿O has conocido a personas que parecen 'recargarte' las pilas?
                     </p>
                 </div>
                 
@@ -79,7 +81,6 @@ export function PillarsSection() {
 
             {/* --- TARJETA BOVIS OPTIMIZADA --- */}
             <FadeIn delay={0.3}>
-                {/* CAMBIO: Usamos min-h y h-auto para evitar cortes de texto en móviles pequeños */}
                 <div className="mx-auto max-w-3xl relative min-h-[400px] md:min-h-[350px] h-auto rounded-3xl overflow-hidden group shadow-2xl border border-terracotta/20">
                     <div className="absolute inset-0">
                         <img 
