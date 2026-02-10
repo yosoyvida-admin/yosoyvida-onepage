@@ -32,7 +32,7 @@ export function FooterSection({ topWaveColor = "text-[#E8DED5]" }: FooterSection
               alt="Peaceful nature scene"
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-dark-brown/40 backdrop-blur-[1px]" />
+            <div className="absolute inset-0 bg-dark-brown/40" />
         </div>
 
         {/* Ola Superior */}
