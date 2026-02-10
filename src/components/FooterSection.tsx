@@ -16,20 +16,31 @@ export function FooterSection({ topWaveColor = "text-[#E8DED5]" }: FooterSection
     <footer className="relative -mt-1 z-20"> 
       
       {/* --- PARALLAX / QUOTE AREA --- */}
-      <div className="relative min-h-[450px] md:min-h-[550px] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0">
+      {/* LOGICA APLICADA: 
+          1. clipPath: inset(0) -> Recorta la imagen fija al tamaño de este contenedor.
+          2. relative z-0 -> Establece el contexto.
+      */}
+      <div 
+        className="relative min-h-[450px] md:min-h-[550px] flex items-center justify-center z-0"
+        style={{ clipPath: "inset(0)" }}
+      >
+        
+        {/* IMAGEN FIXED: Se mantiene quieta en la pantalla */}
+        <div className="fixed inset-0 w-full h-full">
              <img
-              src="/images/new-footer.jpeg"
+              src="/images/new-footer.webp"
               alt="Peaceful nature scene"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-dark-brown/40 backdrop-blur-[1px]" />
         </div>
 
+        {/* Ola Superior */}
         <div className="absolute -top-[1px] w-full transform origin-top scale-y-105 z-10">
             <WaveDivider path={TOP_WAVE} className={topWaveColor} position="top" />
         </div>
 
+        {/* Frase / Contenido (z-10 para estar sobre la imagen) */}
         <div className="relative z-10 px-6 max-w-4xl text-center">
           <blockquote className="space-y-6">
             <p className="font-serif text-2xl md:text-4xl lg:text-5xl text-cream leading-tight italic text-balance drop-shadow-lg">
@@ -41,70 +52,68 @@ export function FooterSection({ topWaveColor = "text-[#E8DED5]" }: FooterSection
           </blockquote>
         </div>
 
+        {/* Ola Inferior */}
         <div className="absolute bottom-0 w-full transform origin-bottom scale-y-105 z-10">
             <WaveDivider path={BOTTOM_WAVE} className="text-cream" position="bottom" />
         </div>
       </div>
 
       {/* --- BOTTOM INFO AREA --- */}
-      <div className="relative bg-cream pt-8 pb-12 px-6 border-t border-dark-brown/5 -mt-1 z-20">
+      {/* Esta sección debe tener fondo sólido (bg-cream) para tapar la imagen fixed al hacer scroll */}
+      <div className="relative bg-cream pt-8 pb-12 px-6 border-t border-dark-brown/5 -mt-[1px] z-20">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-10 md:gap-8">
           
           {/* IZQUIERDA: Grupo de Logos */}
           <div className="flex flex-col sm:flex-row items-center gap-8 sm:gap-10">
-             
-             {/* Logo 1: Yo Soy Vida */}
-             <img 
-               src="/images/logo-verde.png" 
-               alt="Yo Soy Vida Logo" 
-               className="h-14 md:h-16 w-auto object-contain hover:scale-105 transition-transform duration-300" 
-             />
-             
-             <div className="hidden sm:block h-12 w-[1.5px] bg-dark-brown/20 rounded-full"></div>
-             <div className="sm:hidden w-12 h-[1.5px] bg-dark-brown/20 rounded-full"></div>
+              
+              {/* Logo 1: Yo Soy Vida */}
+              <img 
+                src="/images/logo-verde.png" 
+                alt="Yo Soy Vida Logo" 
+                className="h-14 md:h-16 w-auto object-contain hover:scale-105 transition-transform duration-300" 
+              />
+              
+              <div className="hidden sm:block h-12 w-[1.5px] bg-dark-brown/20 rounded-full"></div>
+              <div className="sm:hidden w-12 h-[1.5px] bg-dark-brown/20 rounded-full"></div>
 
-             {/* Logo 2: Jesarela */}
-             <img 
-               src="/images/logo-jesarela.png" 
-               alt="Jesarela Logo" 
-               /* 👇 AQUÍ AGRANDAS EL LOGO:
-                  h-20: Tamaño en móvil (puedes probar h-16, h-20, h-24)
-                  md:h-24: Tamaño en web (puedes probar md:h-20, md:h-24, md:h-28)
-               */
-               className="h-20 md:h-24 w-auto object-contain hover:scale-105 transition-transform duration-300" 
-             />
+              {/* Logo 2: Jesarela */}
+              <img 
+                src="/images/logo-jesarela.png" 
+                alt="Jesarela Logo" 
+                className="h-20 md:h-24 w-auto object-contain hover:scale-105 transition-transform duration-300" 
+              />
           </div>
 
           <div className="flex flex-col items-center md:items-end gap-4 text-center md:text-right">
-             <div className="flex gap-4">
-                <a 
-                  href="https://instagram.com/yosoyvidanatural" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-2 text-dark-brown hover:text-terracotta transition-colors duration-300"
-                >
-                  <span className="font-sans text-xs font-bold tracking-widest uppercase hidden sm:block">Síguenos</span>
-                  <div className="p-2.5 rounded-full bg-white border border-dark-brown/10 group-hover:border-terracotta group-hover:bg-terracotta/10 transition-all">
-                    <Instagram className="w-5 h-5" />
-                  </div>
-                </a>
-                
-                <a 
-                  href="mailto:contacto@yosoyvida.cl"
-                  className="group p-2.5 rounded-full bg-white border border-dark-brown/10 hover:border-terracotta hover:bg-terracotta/10 hover:text-terracotta text-dark-brown transition-all"
-                >
-                    <Mail className="w-5 h-5" />
-                </a>
-             </div>
+              <div className="flex gap-4">
+                 <a 
+                   href="https://instagram.com/yosoyvidanatural" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   className="group flex items-center gap-2 text-dark-brown hover:text-terracotta transition-colors duration-300"
+                 >
+                   <span className="font-sans text-xs font-bold tracking-widest uppercase hidden sm:block">Síguenos</span>
+                   <div className="p-2.5 rounded-full bg-white border border-dark-brown/10 group-hover:border-terracotta group-hover:bg-terracotta/10 transition-all">
+                     <Instagram className="w-5 h-5" />
+                   </div>
+                 </a>
+                 
+                 <a 
+                   href="mailto:contacto@yosoyvida.cl"
+                   className="group p-2.5 rounded-full bg-white border border-dark-brown/10 hover:border-terracotta hover:bg-terracotta/10 hover:text-terracotta text-dark-brown transition-all"
+                 >
+                     <Mail className="w-5 h-5" />
+                 </a>
+              </div>
 
-             <div className="space-y-1">
-                <p className="font-sans text-xs text-dark-brown/60">
-                  © {currentYear} Yo Soy Vida. Todos los derechos reservados.
-                </p>
-                <p className="font-sans text-[10px] text-dark-brown/40">
-                  Medicina Natural & Terapias Integrales
-                </p>
-             </div>
+              <div className="space-y-1">
+                 <p className="font-sans text-xs text-dark-brown/60">
+                   © {currentYear} Yo Soy Vida. Todos los derechos reservados.
+                 </p>
+                 <p className="font-sans text-[10px] text-dark-brown/40">
+                   Medicina Natural & Terapias Integrales
+                 </p>
+              </div>
           </div>
         </div>
       </div>

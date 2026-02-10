@@ -25,7 +25,7 @@ export function HeroSection() {
       {/* Imagen de Fondo */}
       <div className="absolute inset-0">
         <img
-          src="/images/new-hero.jpeg"
+          src="/images/new-hero.webp"
           alt="Serene lifestyle scene"
           className="w-full h-full object-cover"
           style={{ objectPosition: "50% 65%" }} 
