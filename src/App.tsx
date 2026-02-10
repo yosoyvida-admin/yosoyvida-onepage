@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import { ReactLenis } from 'lenis/react'; // 👈 1. Importar Lenis
 import { Navbar } from './components/Navbar';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { ScrollToTop } from './components/ScrollToTop';
@@ -12,7 +13,11 @@ import { SITE_CONFIG } from './config/site';
 
 function App() {
   return (
-    <>
+    // 👈 2. Envolver todo con ReactLenis
+    // root: Indica que controla el scroll de toda la ventana (html)
+    // options: Configuración de inercia (0.1 es el estándar suave)
+    <ReactLenis root options={{ lerp: 0.1, duration: 1.5, smoothWheel: true }}>
+      
       <ScrollToTop />
       
       {/* Navegación Global */}
@@ -37,7 +42,7 @@ function App() {
         </Routes>
       </main>
 
-    </>
+    </ReactLenis>
   );
 }
 

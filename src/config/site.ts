@@ -25,7 +25,7 @@ export const SITE_CONFIG = {
   // Navegación Principal
   nav: [
     { name: "Inicio", href: "/" },
-    { name: "Sobre Mí", href: "/#bio" },
+    { name: "Sobre Mí", href: "/#about" },
     { name: "Terapias", href: "/#terapias" },
     { name: "Cursos", href: "/#cursos" },
     { name: "Catálogo", href: "/catalogo" },
