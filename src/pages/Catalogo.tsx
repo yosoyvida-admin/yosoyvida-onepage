@@ -5,7 +5,7 @@ import { ProductModal } from "../components/ProductModal"
 import { topProducts, generalCatalog, type Product } from "../data/product"
 import { FadeIn } from "../components/ui/FadeIn"
 import { ImageWithSkeleton } from "../components/ui/ImageWithSkeleton"
-import { FooterSection } from "../components/FooterSection"
+import { FooterSection } from "../components/FooterSection" // Si decides volver a ponerlo aquí
 
 const BRAND_LOGO = "/images/cropped-Logo.png";
 
@@ -32,54 +32,56 @@ function ProductCard({ product, onOpen }: CardProps) {
                 <img 
                   src={BRAND_LOGO} 
                   alt="Pro Natural" 
-                  className="w-20 h-20 object-contain drop-shadow-md opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+                  // Ajuste responsivo: logo más pequeño en móvil (w-14)
+                  className="w-14 h-14 md:w-20 md:h-20 object-contain drop-shadow-md opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                 />
              </div>
         )}
 
-        {/* 👇 2. AQUÍ ESTÁ LA MAGIA: Reemplazamos <img> por ImageWithSkeleton */}
         <ImageWithSkeleton
           src={product.image}
           alt={product.name}
-          // Agregamos padding "p-5" y el efecto hover scale aquí en las clases
-          className="w-full h-full p-5 group-hover:scale-105 transition-transform duration-700"
+          // Ajuste responsivo: padding reducido en móvil (p-3) vs desktop (md:p-5)
+          className="w-full h-full p-3 md:p-5 group-hover:scale-105 transition-transform duration-700"
         />
         
         {product.bestseller && (
-          <div className="absolute top-3 right-3 bg-terracotta text-cream text-[10px] font-bold px-2 py-1 rounded-full flex items-center gap-1 shadow-md z-10 animate-fade-in">
-            <Star className="w-3 h-3 fill-current" />
+          <div className="absolute top-2 right-2 md:top-3 md:right-3 bg-terracotta text-cream text-[9px] md:text-[10px] font-bold px-1.5 py-0.5 md:px-2 md:py-1 rounded-full flex items-center gap-1 shadow-md z-10 animate-fade-in">
+            <Star className="w-2.5 h-2.5 md:w-3 md:h-3 fill-current" />
             <span>TOP</span>
           </div>
         )}
         {isBook && (
-           <div className="absolute top-3 right-3 bg-white/90 text-dark-brown text-xs font-bold px-2 py-1 rounded flex items-center gap-1 shadow-sm z-10 animate-fade-in">
-             <BookOpen className="w-3 h-3" />
+           <div className="absolute top-2 right-2 md:top-3 md:right-3 bg-white/90 text-dark-brown text-[10px] md:text-xs font-bold px-1.5 py-0.5 md:px-2 md:py-1 rounded flex items-center gap-1 shadow-sm z-10 animate-fade-in">
+             <BookOpen className="w-2.5 h-2.5 md:w-3 md:h-3" />
              <span>LIBRO</span>
            </div>
         )}
         
         <div className="absolute inset-0 bg-dark-brown/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[1px] z-20">
-           <div className="bg-white text-dark-brown px-4 py-2 rounded-full font-bold text-sm flex items-center gap-2 shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-             <Eye className="w-4 h-4" /> Ver Detalle
+           <div className="bg-white text-dark-brown px-3 py-1.5 md:px-4 md:py-2 rounded-full font-bold text-xs md:text-sm flex items-center gap-2 shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+             <Eye className="w-3 h-3 md:w-4 md:h-4" /> Ver
            </div>
         </div>
       </div>
       
-      <div className="p-5 flex flex-col flex-grow">
-        <h3 className="font-serif text-lg text-dark-brown mb-1 line-clamp-1 group-hover:text-terracotta transition-colors">
+      {/* Ajuste responsivo: Padding contenedor reducido en móvil (p-3) */}
+      <div className="p-3 md:p-5 flex flex-col flex-grow">
+        {/* Ajuste responsivo: Texto un poco más pequeño en móvil */}
+        <h3 className="font-serif text-base md:text-lg text-dark-brown mb-1 line-clamp-1 group-hover:text-terracotta transition-colors leading-tight">
           {product.name}
         </h3>
-        {isBook && <p className="text-xs text-dark-brown/50 uppercase mb-1">{product.author}</p>}
+        {isBook && <p className="text-[10px] md:text-xs text-dark-brown/50 uppercase mb-1">{product.author}</p>}
         
-        <p className="font-sans text-sm text-dark-brown/60 mb-4 line-clamp-2 leading-relaxed">
+        <p className="font-sans text-xs md:text-sm text-dark-brown/60 mb-2 md:mb-4 line-clamp-2 leading-relaxed">
             {product.shortDescription}
         </p>
         
-        <div className="mt-auto flex items-center justify-between border-t border-gray-50 pt-3">
-            <p className="font-sans text-earthy-brown font-bold text-lg">
+        <div className="mt-auto flex items-center justify-between border-t border-gray-50 pt-2 md:pt-3">
+            <p className="font-sans text-earthy-brown font-bold text-sm md:text-lg">
                 {product.price}
             </p>
-            <span className="text-xs font-bold text-terracotta uppercase tracking-wider group-hover:underline">
+            <span className="text-[10px] md:text-xs font-bold text-terracotta uppercase tracking-wider group-hover:underline">
                 + Info
             </span>
         </div>
@@ -88,7 +90,6 @@ function ProductCard({ product, onOpen }: CardProps) {
   )
 }
 
-// ... El resto del archivo (CatalogoPage) sigue igual ...
 export default function CatalogoPage() {
   const [filter, setFilter] = useState<'all' | 'product' | 'book'>('all');
   const [visibleCount, setVisibleCount] = useState(8); 
@@ -151,7 +152,7 @@ export default function CatalogoPage() {
       </section>
 
       {/* TOP 5 FAVORITOS */}
-      <section className="bg-[#E8DED5] py-16 md:py-24 px-6 md:px-12 relative -mt-[2px] z-10">
+      <section className="bg-[#E8DED5] py-16 md:py-24 px-4 md:px-12 relative -mt-[2px] z-10">
         <div className="max-w-7xl mx-auto">
           
           <FadeIn>
@@ -166,7 +167,8 @@ export default function CatalogoPage() {
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+          {/* 👇 CAMBIO AQUÍ: grid-cols-2 en móvil, gap-3 (más ajustado) */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-6">
             {topProducts.map((product, index) => (
               <FadeIn key={product.id} delay={index * 0.1} className="h-full">
                   <ProductCard product={product} onOpen={openModal} />
@@ -178,7 +180,7 @@ export default function CatalogoPage() {
       </section>
 
       {/* CATÁLOGO GENERAL */}
-      <section className="bg-cream py-16 md:py-24 px-6 md:px-12 -mt-[2px] z-10 relative">
+      <section className="bg-cream py-16 md:py-24 px-4 md:px-12 -mt-[2px] z-10 relative">
         <div className="max-w-7xl mx-auto">
           
           <FadeIn>
@@ -196,7 +198,7 @@ export default function CatalogoPage() {
                         <button
                             key={btn.key}
                             onClick={() => handleFilterChange(btn.key as any)}
-                            className={`px-5 py-2 rounded-full text-sm font-sans uppercase tracking-wider transition-all duration-300 ${
+                            className={`px-4 py-1.5 md:px-5 md:py-2 rounded-full text-xs md:text-sm font-sans uppercase tracking-wider transition-all duration-300 ${
                                 filter === btn.key 
                                 ? "bg-terracotta text-cream shadow-md transform scale-105 font-bold" 
                                 : "bg-white text-dark-brown border border-dark-brown/10 hover:border-terracotta"
@@ -209,7 +211,8 @@ export default function CatalogoPage() {
               </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-8 mb-12">
+          {/* 👇 CAMBIO AQUÍ: grid-cols-2 en móvil, gap-3 (más ajustado) */}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 lg:gap-8 mb-12">
             {visibleItems.map((product, index) => (
               <FadeIn key={product.id} delay={index % 4 * 0.1} className="h-full">
                  <ProductCard product={product} onOpen={openModal} />
@@ -240,7 +243,8 @@ export default function CatalogoPage() {
            )}
         </div>
       </section>
-
+      
+      {/* Si usas Footer Global en App.tsx, no lo pongas aquí. Si no, descomenta abajo: */}
       <FooterSection topWaveColor="text-cream" />
 
       <ProductModal 
