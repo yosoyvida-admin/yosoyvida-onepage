@@ -5,7 +5,7 @@ import { ProductModal } from "../components/ProductModal"
 import { topProducts, generalCatalog, type Product } from "../data/product"
 import { FadeIn } from "../components/ui/FadeIn"
 import { ImageWithSkeleton } from "../components/ui/ImageWithSkeleton"
-import { FooterSection } from "../components/FooterSection" // Si decides volver a ponerlo aquí
+import { FooterSection } from "../components/FooterSection" 
 
 const BRAND_LOGO = "/images/cropped-Logo.png";
 
@@ -32,7 +32,6 @@ function ProductCard({ product, onOpen }: CardProps) {
                 <img 
                   src={BRAND_LOGO} 
                   alt="Pro Natural" 
-                  // Ajuste responsivo: logo más pequeño en móvil (w-14)
                   className="w-14 h-14 md:w-20 md:h-20 object-contain drop-shadow-md opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                 />
              </div>
@@ -41,8 +40,9 @@ function ProductCard({ product, onOpen }: CardProps) {
         <ImageWithSkeleton
           src={product.image}
           alt={product.name}
-          // Ajuste responsivo: padding reducido en móvil (p-3) vs desktop (md:p-5)
-          className="w-full h-full p-3 md:p-5 group-hover:scale-105 transition-transform duration-700"
+          // 👇 CAMBIO AQUÍ: Eliminé 'group-hover:scale-105' y 'transition-transform'
+          // Ahora la imagen es estática (static) y nítida.
+          className="w-full h-full p-3 md:p-5"
         />
         
         {product.bestseller && (
@@ -58,16 +58,14 @@ function ProductCard({ product, onOpen }: CardProps) {
            </div>
         )}
         
-        <div className="absolute inset-0 bg-dark-brown/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[1px] z-20">
+        <div className="hidden md:flex absolute inset-0 bg-dark-brown/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-center justify-center z-20">
            <div className="bg-white text-dark-brown px-3 py-1.5 md:px-4 md:py-2 rounded-full font-bold text-xs md:text-sm flex items-center gap-2 shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-             <Eye className="w-3 h-3 md:w-4 md:h-4" /> Ver
+             <Eye className="w-3 h-3 md:w-4 md:h-4" /> Ver Detalle
            </div>
         </div>
       </div>
       
-      {/* Ajuste responsivo: Padding contenedor reducido en móvil (p-3) */}
       <div className="p-3 md:p-5 flex flex-col flex-grow">
-        {/* Ajuste responsivo: Texto un poco más pequeño en móvil */}
         <h3 className="font-serif text-base md:text-lg text-dark-brown mb-1 line-clamp-1 group-hover:text-terracotta transition-colors leading-tight">
           {product.name}
         </h3>
@@ -167,7 +165,6 @@ export default function CatalogoPage() {
             </div>
           </FadeIn>
 
-          {/* 👇 CAMBIO AQUÍ: grid-cols-2 en móvil, gap-3 (más ajustado) */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 md:gap-6">
             {topProducts.map((product, index) => (
               <FadeIn key={product.id} delay={index * 0.1} className="h-full">
@@ -211,7 +208,6 @@ export default function CatalogoPage() {
               </div>
           </FadeIn>
 
-          {/* 👇 CAMBIO AQUÍ: grid-cols-2 en móvil, gap-3 (más ajustado) */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-6 lg:gap-8 mb-12">
             {visibleItems.map((product, index) => (
               <FadeIn key={product.id} delay={index % 4 * 0.1} className="h-full">
@@ -244,7 +240,6 @@ export default function CatalogoPage() {
         </div>
       </section>
       
-      {/* Si usas Footer Global en App.tsx, no lo pongas aquí. Si no, descomenta abajo: */}
       <FooterSection topWaveColor="text-cream" />
 
       <ProductModal 

@@ -5,7 +5,7 @@ import { WaveDivider } from "./WaveDivider"
 import { topProducts, generalCatalog, type Product } from "../data/product"
 import { ProductModal } from "./ProductModal"
 import { FadeIn } from "./ui/FadeIn" 
-import { SITE_CONFIG } from "../config/site" // 👈 IMPORTAMOS LA CONFIG
+import { SITE_CONFIG } from "../config/site"
 
 const BRAND_LOGO = "/images/cropped-Logo.png";
 const BOTTOM_WAVE = "M0,224L48,202.7C96,181,192,139,288,122.7C384,107,480,117,576,144C672,171,768,213,864,197.3C960,181,1056,107,1152,85.3C1248,64,1344,96,1392,112L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
@@ -87,7 +87,9 @@ export function ProductsSection() {
                     className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                     />
                     
-                    <div className="absolute inset-0 bg-dark-brown/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-[1px]">
+                    {/* 👇 SOLUCIÓN AQUÍ: Agregué 'hidden md:flex' */}
+                    {/* Esto oculta la capa de 'Ver Detalle' en móviles y la muestra solo en desktop */}
+                    <div className="hidden md:flex absolute inset-0 bg-dark-brown/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 items-center justify-center">
                         <div className="bg-white text-dark-brown px-3 py-1.5 rounded-full font-bold text-xs flex items-center gap-1 shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform">
                         <Eye className="w-3 h-3" /> Ver Detalle
                         </div>
@@ -100,7 +102,6 @@ export function ProductsSection() {
                     </h3>
                     <p className="font-sans text-earthy-brown font-medium mb-4">{product.price}</p>
                     
-                    {/* 👇 USO DE SITE_CONFIG AQUÍ */}
                     <a
                     href={SITE_CONFIG.whatsappLink(`Hola! Me interesa el producto: ${product.name}`)}
                     target="_blank"
