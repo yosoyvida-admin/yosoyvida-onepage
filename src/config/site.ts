@@ -11,7 +11,7 @@ export const SITE_CONFIG = {
   
   // Redes Sociales
   links: {
-    instagram: "https://instagram.com/yosoyvidanatural",
+    instagram: "https://instagram.com/yosoyvida.cl",
     facebook: "https://facebook.com/yosoyvida", // Ajusta si tienes
   },
 
